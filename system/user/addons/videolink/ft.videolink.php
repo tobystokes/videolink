@@ -1,21 +1,22 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Videolink_ft extends EE_Fieldtype {
-
+	
 	var $info = array(
 		'name'		=> 'Video Link',
-		'version'	=> '1.5.1'
+		'version'	=> '2.0.0'
 	);
-
+	
 	function __construct()
 	{
 		parent::__construct();
+		$this->info = ee('Addon')->get('videolink');
 
-		if (! isset($this->EE->session->cache['videolink']))
+		if (! isset(ee()->session->cache['videolink']))
 		{
-			$this->EE->session->cache['videolink'] = array();
+			ee()->session->cache['videolink'] = array();
 		}
-		$this->cache =& $this->EE->session->cache['videolink'];
+		$this->cache =& ee()->session->cache['videolink'];
 
 		if (!isset($this->cache['includes'])) {
 			$this->cache['includes'] = array();
@@ -61,7 +62,7 @@ class Videolink_ft extends EE_Fieldtype {
 		if (! in_array($file, $this->cache['includes']))
 		{
 			$this->cache['includes'][] = $file;
-			$this->EE->cp->add_to_foot('<script type="text/javascript" src="'.$this->_theme_url().$file.'?version='.$this->info['version'].'"></script>');
+			ee()->cp->add_to_foot('<script type="text/javascript" src="'.$this->_theme_url().$file.'?version='.$this->info->get('version').'"></script>');
 		}
 	}
 
@@ -69,7 +70,7 @@ class Videolink_ft extends EE_Fieldtype {
 		if (! in_array($file, $this->cache['includes']))
 		{
 			$this->cache['includes'][] = $file;
-			$this->EE->cp->add_to_head('<link rel="stylesheet" href="'.$this->_theme_url().$file.'?version='.$this->info['version'].'">');
+			ee()->cp->add_to_head('<link rel="stylesheet" href="'.$this->_theme_url().$file.'?version='.$this->info->get('version').'">');
 		}
 	}
 
@@ -80,7 +81,7 @@ class Videolink_ft extends EE_Fieldtype {
 	{
 		if (! isset($this->cache['theme_url']))
 		{
-			$theme_folder_url = defined('URL_THIRD_THEMES') ? URL_THIRD_THEMES : $this->EE->config->slash_item('theme_folder_url').'third_party/';
+			$theme_folder_url = defined('URL_THIRD_THEMES') ? URL_THIRD_THEMES : ee()->config->slash_item('theme_folder_url').'third_party/';
 			$this->cache['theme_url'] = $theme_folder_url.'videolink/';
 		}
 
@@ -112,7 +113,7 @@ class Videolink_ft extends EE_Fieldtype {
 		$this->_include_theme_js('js/videolink.js');
 		$this->_include_theme_css('css/videolink.css');
 
-		$google_api_key = $this->EE->config->item('videolink:googleapikey');
+		$google_api_key = ee()->config->item('videolink:googleapikey');
 
 		return <<<EOF
 <div class="videolink" data-googleapi-key="$google_api_key">

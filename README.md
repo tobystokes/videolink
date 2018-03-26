@@ -21,18 +21,15 @@ it's not working. Go forth and Open Source.
 
 ## Requirements
 
-* EE 2.7
+* EE > 3
 
 ## Installation
 
-1. Copy the "system/expressionengine/third_party/videolink" folder to
-ExpressionEngine's third-party add-ons directory. (e.g.
-`/system/expressionengine/third_party/`)
-2. Copy the "themes/third_party/videolink" folder to ExpressionEngine's third-
-party themes directory. (e.g. `/themes/third_party/videolink/`)
-3. Log into your ExpressionEngine control panel.
-4. Open the Field Types tab.
-5. Click "Install" by "Video Link".
+1.  Copy the "system/user/addons/videolink" folder to
+    ExpressionEngine's third-party add-ons directory. (e.g.
+    `system/user/addons/`)
+2.  Copy the "themes/user/videolink" folder to ExpressionEngine's third-
+    party themes directory. (e.g. `themes/user/`)
 
 ## Usage
 
@@ -53,21 +50,21 @@ instructions.
     * Select "APIs & Auth" -> "APIs" in the sidebar
     * Select on "YouTube Data API"
     * Select on "Enable"
-4. Create an API Key
+4.  Create an API Key
     * Select "APIs & Auth" -> Credentials" in the sidebar
     * Select "Create new Key"
     * Select "Browser Key"
     * _(Optional)_ Enter the URL of the ExpressionEngine control pannel in the
       HTTP referrers for security
     * Select "Create"
-5. Add the API Key to ExpressionEngine's config
+5.  Add the API Key to ExpressionEngine's config
     * Copy the new API Key
     * If you use [master config][masterconfig], put
       `$env_config['videolink:googleapikey'] = 'your new api key';` in
       config.master.php
     * If you do not use master config, put
       `$config['videolink:googleapikey'] = 'your new api key';` in
-      system/expressionengine/config/config.php
+      /system/user/config/config.php
 
 ## Tags
 
@@ -79,8 +76,8 @@ instructions.
   `{your-field-name:embed width="620"}` or
   `{your-field-name:embed width="500" height="380"}` to include a size.
 * `{your-field-name:title}` – The title of the video.
-* `{your-field-name:thumbnail}` – The thumbnail of the video. *Note: this is
-  an 'http:' URL, because that is what both YouTube and Vimeo return.*
+* `{your-field-name:thumbnail}` – The thumbnail of the video. _Note: this is
+  an 'http:' URL, because that is what both YouTube and Vimeo return._
 * `{your-field-name:type}` – returns either "youtube", "vimeo", or "unknown".
 * `{your-field-name:valid}` – returns "yes" for YouTube and Vimeo URLs, and
   an empty string for unknown URLs.
