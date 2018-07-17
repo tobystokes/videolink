@@ -9,7 +9,8 @@ return array(
   'namespace'   => 'Clickrain\VideoLink',
   'fieldtypes' => array(
     'videolink' => array(
-      'name' => 'Video Link'
+      'name' => 'Video Link',
+      'compatibility' => 'text'
     )
   )
 );
